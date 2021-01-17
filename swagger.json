@@ -1,0 +1,333 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.1",
+    "title": "Weather REST api for USA cities",
+    "description": "Here you can request the weather for the last 7 days or use the test data",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Get data from ap",
+      "description": "Here you can request data for the last 7 days in all cities from the city table"
+    },
+    {
+      "name": "City",
+      "description": "Getting information about available cities"
+    },
+    {
+      "name": "Date",
+      "description": "Getting all available dates"
+    },
+    {
+      "name": "Weather",
+      "description": "Getting weather data"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/get7d_data": {
+      "get": {
+        "tags": [
+          "Get data from ap"
+        ],
+        "summary": "get all data for 7 days from api",
+        "responses": {
+          "200": {
+            "description": "When the request is sent the data will be automatically written to the database.",
+            "schema": {
+            }
+          }
+        }
+      }
+    },
+    "/city": {
+      "get": {
+        "tags": [
+          "City"
+        ],
+        "summary": "Get all available cities",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/city"
+            }
+          }
+        }
+      }
+    },
+    "/city/req_top": {
+      "get": {
+        "tags": [
+          "City"
+        ],
+        "summary": "Get the most requested city",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/city_req_top"
+            }
+          }
+        }
+      }
+    },
+    "/date": {
+      "get": {
+        "tags": [
+          "Date"
+        ],
+        "summary": "Getting all available dates",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/date_st"
+            }
+          }
+        }
+      }
+    },
+    "/weather/daily": {
+      "parameters": [
+        {
+          "in": "query",
+          "name": "city",
+          "description": "city: default test_city",
+          "schema": {
+            "type": "string",
+            "minimum": 1
+          }
+        },
+        {
+          "in": "query",
+          "name": "date",
+          "description": "date: default 2000-01-01",
+          "schema": {
+            "type": "string",
+            "minimum": 1
+          }
+        }
+      ],
+      "get": {
+        "tags": [
+          "Weather"
+        ],
+        "summary": "Getting weather by city and date",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/weather_daily"
+            }
+          }
+        }
+      }
+    },
+    "/weather/average_temperature": {
+      "parameters": [
+        {
+          "in": "query",
+          "name": "city",
+          "description": "city: default test_city",
+          "schema": {
+            "type": "string",
+            "minimum": 0
+          }
+        },
+        {
+          "in": "query",
+          "name": "date",
+          "description": "date: default 2000-01-01",
+          "schema": {
+            "type": "string",
+            "minimum": 0
+          }
+        }
+      ],
+      "get": {
+        "tags": [
+          "Weather"
+        ],
+        "summary": "Getting weather by city and date",
+        "description": "you can request 3 types of data: by city, date, and all data.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/weather_average_temperature"
+            }
+          }
+        }
+      }
+    }
+
+  },
+  "definitions": {
+    "city": {
+      "required": [
+        "id",
+        "city_name",
+        "query_total"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "city_name": {
+          "type": "string"
+        },
+        "query_total": {
+          "type": "integer"
+        }
+      }
+    },
+    "city_req_top": {
+      "required": [
+        "id",
+        "city_name",
+        "query_total"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "city_name": {
+          "type": "string"
+        },
+        "query_total": {
+          "type": "integer"
+        }
+      }
+    },
+    "date_st": {
+      "required": [
+        "id",
+        "date_st_name"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "date_st_name": {
+          "type": "string"
+        }
+      }
+    },
+    "weather_daily": {
+      "required": [
+        "id",
+        "maxtemp_c",
+        "maxtemp_f",
+        "mintemp_c",
+        "mintemp_f",
+        "avgtemp_c",
+        "avgtemp_f",
+        "maxwind_mph",
+        "maxwind_kph",
+        "totalprecip_mm",
+        "totalprecip_in",
+        "avgvis_km",
+        "avgvis_miles",
+        "avghumidity",
+        "dateId",
+        "cityId",
+        "city_name",
+        "query_total",
+        "date_st_name"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "maxtemp_c": {
+          "type": "integer"
+        },
+        "maxtemp_f": {
+          "type": "integer"
+        },
+        "mintemp_c": {
+          "type": "integer"
+        },
+        "mintemp_f": {
+          "type": "integer"
+        },
+        "avgtemp_c": {
+          "type": "integer"
+        },
+        "avgtemp_f": {
+          "type": "integer"
+        },
+        "maxwind_mph": {
+          "type": "integer"
+        },
+        "totalprecip_mm": {
+          "type": "integer"
+        },
+        "totalprecip_in": {
+          "type": "integer"
+        },
+        "avgvis_km": {
+          "type": "integer"
+        },
+        "avgvis_miles": {
+          "type": "integer"
+        },
+        "avghumidity": {
+          "type": "integer"
+        },
+        "dateId": {
+          "type": "integer"
+        },
+        "cityId": {
+          "type": "integer"
+        },
+        "city_name": {
+          "type": "string"
+        },
+        "query_total": {
+          "type": "integer"
+        },
+        "date_st_name": {
+          "type": "string"
+        }
+      }
+    },
+    "weather_average_temperature": {
+      "required": [
+        "avgtemp_c",
+        "avgtemp_f",
+        "city_name",
+        "date_st_name"
+      ],
+      "properties": {
+        "avgtemp_c": {
+          "type": "integer"
+        },
+        "avgtemp_f": {
+          "type": "integer"
+        },
+        "city_name": {
+          "type": "string"
+        },
+        "date_st_name": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

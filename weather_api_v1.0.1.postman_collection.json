@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "a6e1a36a-2042-4d65-9e0d-c24ed0a8a3bd",
+		"name": "weather_api_v1.0.1",
+		"description": "testing weather api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "city",
+			"item": [
+				{
+					"name": "top city",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"test json test data\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].id).to.be.a('number');",
+									"    pm.expect(jsonData[0].city_name).to.be.a('string');",
+									"    pm.expect(jsonData[0].query_total).to.be.a('number');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{home}}city/req_top",
+							"host": [
+								"{{home}}city"
+							],
+							"path": [
+								"req_top"
+							]
+						},
+						"description": "Get the most requested city"
+					},
+					"response": []
+				},
+				{
+					"name": "all cities",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"test json test data\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].id).to.be.a('number');",
+									"    pm.expect(jsonData[0].city_name).to.be.a('string');",
+									"    pm.expect(jsonData[0].query_total).to.be.a('number');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{home}}city",
+							"host": [
+								"{{home}}city"
+							]
+						},
+						"description": "Getting information about available cities"
+					},
+					"response": []
+				}
+			],
+			"description": "Getting information about available cities"
+		},
+		{
+			"name": "date",
+			"item": [
+				{
+					"name": "all date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"test json test data\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].id).to.be.a('number');",
+									"    pm.expect(jsonData[0].date_st_name).to.be.a('string');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{home}}date",
+							"host": [
+								"{{home}}date"
+							]
+						},
+						"description": "Getting all available dates"
+					},
+					"response": []
+				}
+			],
+			"description": "Getting all available dates"
+		},
+		{
+			"name": "weather",
+			"item": [
+				{
+					"name": "weather daily by city and date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"test json test data\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].id).to.be.a('number');",
+									"    pm.expect(jsonData[0].maxtemp_c).to.be.a('number');",
+									"    pm.expect(jsonData[0].maxtemp_f).to.be.a('number');",
+									"    pm.expect(jsonData[0].mintemp_c).to.be.a('number');",
+									"    pm.expect(jsonData[0].mintemp_f).to.be.a('number');",
+									"    pm.expect(jsonData[0].avgtemp_c).to.be.a('number');",
+									"    pm.expect(jsonData[0].avgtemp_f).to.be.a('number');",
+									"    pm.expect(jsonData[0].maxwind_mph).to.be.a('number');",
+									"    pm.expect(jsonData[0].maxwind_kph).to.be.a('number');",
+									"    pm.expect(jsonData[0].totalprecip_mm).to.be.a('number');",
+									"    pm.expect(jsonData[0].totalprecip_in).to.be.a('number');",
+									"    pm.expect(jsonData[0].avgvis_km).to.be.a('number');",
+									"    pm.expect(jsonData[0].avgvis_miles).to.be.a('number');",
+									"    pm.expect(jsonData[0].avghumidity).to.be.a('number');",
+									"    pm.expect(jsonData[0].dateId).to.be.a('number');",
+									"    pm.expect(jsonData[0].cityId).to.be.a('number');",
+									"    pm.expect(jsonData[0].city_name).to.be.a('string');",
+									"    pm.expect(jsonData[0].query_total).to.be.a('number');",
+									"    pm.expect(jsonData[0].date_st_name).to.be.a('string');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{home}}weather/daily?city=test_city&date=2000-01-01",
+							"host": [
+								"{{home}}weather"
+							],
+							"path": [
+								"daily"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "test_city"
+								},
+								{
+									"key": "date",
+									"value": "2000-01-01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "average temperature",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"test json test data\", function () {",
+									"    const jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].avgtemp_c).to.be.a('number');",
+									"    pm.expect(jsonData[0].avgtemp_f).to.be.a('number');",
+									"    pm.expect(jsonData[0].city_name).to.be.a('string');",
+									"    pm.expect(jsonData[0].date_st_name).to.be.a('string');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{home}}weather/average_temperature?city=test_city&date=2000-01-01",
+							"host": [
+								"{{home}}weather"
+							],
+							"path": [
+								"average_temperature"
+							],
+							"query": [
+								{
+									"key": "city",
+									"value": "test_city"
+								},
+								{
+									"key": "date",
+									"value": "2000-01-01"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Getting weather data"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "home",
+			"value": "http://localhost:8080/"
+		}
+	]
+}
